@@ -2,7 +2,7 @@ from src.main import guess_the_word
 
 
 def test_guess_correct():
-    assert guess_the_word("python") is True
+    assert guess_the_word("angular") is True
 
 
 def test_guess_incorrect():
