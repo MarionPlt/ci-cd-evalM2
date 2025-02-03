@@ -14,20 +14,15 @@ Bienvenue dans notre projet **Guess the Word** ! Ce document (README) décrit :
 
 ## 1. Équipe
 
-- **Nom 1** (vous)
-- **Nom 2** (coéquipier)
-- **Nom 3** (coéquipier, si applicable)
-
-> Mettez à jour cette liste avec les noms des membres de votre groupe.
+- **Nom 1** Bastien OEUVRARD
+- **Nom 2** Jérémy ROSSI
 
 ---
 
 ## 2. URL du dépôt
 
 Le projet est disponible sur GitHub :  
-[**GitHub - Guess The Word**](https://github.com/VotreCompte/guess-the-word)
-
-> Remplacez l’URL ci-dessus par l’URL réelle de votre dépôt public GitHub.
+[**GitHub - Guess The Word**](https://github.com/Sairkko/ci-cd-evalM2/tree/main)
 
 ---
 
@@ -37,15 +32,6 @@ Le projet est disponible sur GitHub :
 - Le mot par défaut est `angular`.  
 - Si l’utilisateur entre `angular`, le jeu confirme que la réponse est correcte.  
 - Pour toute autre réponse, le jeu indique que la réponse est incorrecte.
-
-### Arborescence principale
-
-- `src/main.py` : contient la fonction principale `guess_the_word` et le code d’exécution.  
-- `tests/test_main.py` : contient les tests unitaires pour valider la fonction `guess_the_word`.  
-- `requirements.txt` : liste les dépendances (flake8 et pytest).  
-- `Dockerfile` : fichier de configuration pour la création de l’image Docker.  
-- `setup.py` (optionnel) : un script d’installation (si besoin).  
-- `.github/workflows/CI-CD.yml` : le fichier GitHub Actions définissant notre pipeline CI/CD.  
 
 ---
 
@@ -67,31 +53,21 @@ Notre pipeline d’Intégration Continue s’exécute **à chaque pull request**
 Pour reproduire localement les étapes du CI avant de pousser votre code :
 
 ```bash
-# 1. Créer et activer un environnement virtuel (optionnel, mais recommandé)
-python3 -m venv venv
-source venv/bin/activate
-
-# 2. Mettre à jour pip et installer les dépendances
+# 1. Mettre à jour pip et installer les dépendances
 pip install --upgrade pip
 pip install -r requirements.txt
 
-# 3. Lint
+# 2. Lint
 flake8 .
 
-# 4. Build (compile check)
+# 3. Build (compile check)
 python -m compileall .
 
-# 5. Tests
+# 4. Tests
+export PYTHONPATH=.
 pytest tests
 ```
 Si toutes ces étapes réussissent en local, alors votre PR devrait passer le CI sans problème.
-
-### 4.3 Politique de merge
-
-- **Stratégie de branche** : tout nouveau développement doit se faire sur une branche dédiée (ex. `feature/...` ou `fix/...`).
-- **Pull Request** : chaque branche doit faire l’objet d’une PR vers la branche `main`.
-- **Revue de code** : au moins un membre de l’équipe doit approuver la PR après avoir vérifié le code et les résultats du CI.
-- **Merge** : la branche `main` ne contient idéalement que des commits de merge ou de test de CD (pas de commit direct).
 
 ---
 
@@ -119,31 +95,31 @@ Le jeu se lancera alors dans votre terminal.
 
 ## 6. Livraison Continue (avec les tags)
 
-Lorsqu’on crée **manuellement un tag** (par exemple `v1.0.0`) et qu’on le pousse sur GitHub, le pipeline de **Livraison Continue** se déclenche :
+Lorsqu’on crée **manuellement un tag** (par exemple `v2.0.3`) et qu’on le pousse sur GitHub, le pipeline de **Livraison Continue** se déclenche :
 
 1. Le pipeline exécute encore une fois les étapes de CI (lint, build, tests).  
-2. Construit l’image Docker en utilisant le tag Git (ex. `v1.0.0`).  
-3. Publie cette image Docker avec la balise `v1.0.0` sur Docker Hub.  
+2. Construit l’image Docker en utilisant le tag Git (ex. `v2.0.3`).  
+3. Publie cette image Docker avec la balise `v2.0.3` sur Docker Hub.  
 4. (Bonus) Crée automatiquement une **release GitHub** (notes de release) associée au tag.
 
 ### 6.1 Exemple de création de tag et de push
 
 ```bash
 # Création du tag
-git tag -a v1.0.0 -m "Release version 1.0.0"
+git tag v2.0.3
 
 # Envoi du tag vers GitHub
-git push origin v1.0.0
+git push origin v2.0.3
 ```
 
 Après quelques minutes, votre pipeline GitHub Actions va :
 
 - Construire et tester le projet.
-- Construire l’image Docker sairkko/guess-the-word:v1.0.0.
+- Construire l’image Docker sairkko/guess-the-word:v2.0.3.
 - Pousser cette image sur Docker Hub.
-- Créer une release GitHub visible sur la page “Releases” du dépôt.
+- Créer une release GitHub visible sur la page “Releases” du dépôt [Release GitHub](https://github.com/Sairkko/ci-cd-evalM2/releases/tag/v2.0.3).
 
-- ## 7. Procédure de déploiement pour Damien Duportal et Marion Playout
+- ## 7. Procédure de déploiement pour Damien Duportal et Marion Playout ou autres stagiaires
 
 Lorsque vous souhaitez mettre en production une nouvelle version, voici les **deux scénarios** possibles :
 
@@ -162,15 +138,15 @@ Aucune action manuelle supplémentaire n’est nécessaire. L’image `latest` e
 
 ### 7.2 Scénario 2 : Livraison continue via un tag (version versionnée)
 
-1. **Décider d’une nouvelle version** (ex. `v1.0.1`).  
+1. **Décider d’une nouvelle version** (ex. `v2.0.4`).  
 2. **Créer et pousser le tag** depuis votre machine :  
  ```bash
-   git tag -a v1.0.1 -m "Release version 1.0.1"
-   git push origin v1.0.1
+   git tag v2.0.4
+   git push origin v2.0.4
 ```
 3. **Suivre la pipeline** dans l’onglet “Actions” :
-La construction de l’image Docker avec le tag v1.0.1 sera lancée.
-La release GitHub “v1.0.1” sera créée.
+La construction de l’image Docker avec le tag v2.0.4 sera lancée.
+La release GitHub “v2.0.4” sera créée.
 
 ## 8. Dockerfile et Hadolint (bonus)
 
