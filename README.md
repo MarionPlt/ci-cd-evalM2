@@ -136,7 +136,7 @@ Lorsque vous souhaitez mettre en production une nouvelle version, voici les **de
 
 Aucune action manuelle supplémentaire n’est nécessaire. L’image `latest` est prête à être utilisée.
 
-### 7.2 Scénario 2 : Livraison continue via un tag (version versionnée)
+### 7.2 Scénario 2 : Livraison continue via un tag
 
 1. **Décider d’une nouvelle version** (ex. `v2.0.4`).  
 2. **Créer et pousser le tag** depuis votre machine :  
