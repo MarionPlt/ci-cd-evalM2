@@ -119,7 +119,7 @@ Après quelques minutes, votre pipeline GitHub Actions va :
 - Pousser cette image sur Docker Hub.
 - Créer une release GitHub visible sur la page “Releases” du dépôt [Release GitHub](https://github.com/Sairkko/ci-cd-evalM2/releases/tag/v2.0.3).
 
-- ## 7. Procédure de déploiement pour Damien Duportal et Marion Playout ou autres stagiaires
+## 7. Procédure de déploiement pour Damien Duportal et Marion Playout ou autres stagiaires
 
 Lorsque vous souhaitez mettre en production une nouvelle version, voici les **deux scénarios** possibles :
 
