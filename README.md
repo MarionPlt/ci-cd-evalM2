@@ -14,8 +14,8 @@ Bienvenue dans notre projet **Guess the Word** ! Ce document (README) décrit :
 
 ## 1. Équipe
 
-- **Nom 1** Bastien OEUVRARD
-- **Nom 2** Jérémy ROSSI
+- **OEUVRARD** Bastien
+- **ROSSI** Jérémy
 
 ## 3. Description du projet
 
