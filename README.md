@@ -17,7 +17,7 @@ Bienvenue dans notre projet **Guess the Word** ! Ce document (README) décrit :
 - **OEUVRARD** Bastien
 - **ROSSI** Jérémy
 
-## 3. Description du projet
+## 2. Description du projet
 
 **Guess the Word** est un mini-jeu en Python. Son but est simple : l’utilisateur doit deviner le mot secret.  
 - Le mot par défaut est `angular`.  
@@ -26,11 +26,11 @@ Bienvenue dans notre projet **Guess the Word** ! Ce document (README) décrit :
 
 ---
 
-## 4. Intégration Continue (CI)
+## 3. Intégration Continue (CI)
 
 Notre pipeline d’Intégration Continue s’exécute **à chaque pull request** (PR) ouverte sur le dépôt.
 
-### 4.1 Étapes du CI
+### 3.1 Étapes du CI
 
 1. **Checkout** : Récupération du code du dépôt GitHub.  
 2. **Configuration de Python 3.9** : Installation de la version Python nécessaire.  
@@ -39,7 +39,7 @@ Notre pipeline d’Intégration Continue s’exécute **à chaque pull request**
 5. **Build (compile check)** : `python -m compileall .` pour vérifier que le code est compilable.  
 6. **Tests unitaires** : `pytest tests` pour lancer tous les tests dans le répertoire `tests/`.
 
-### 4.2 Vérification manuelle (pour l’auteur d’une PR)
+### 3.2 Vérification manuelle (pour l’auteur d’une PR)
 
 Pour reproduire localement les étapes du CI avant de pousser votre code :
 
@@ -62,7 +62,7 @@ Si toutes ces étapes réussissent en local, alors votre PR devrait passer le CI
 
 ---
 
-## 5. Déploiement Continu (sur `main`)
+## 4. Déploiement Continu (sur `main`)
 
 Dès qu’un commit est poussé sur la branche `main` (via merge d’une PR approuvée), un **Déploiement Continu** est déclenché :
 
@@ -74,7 +74,7 @@ Dès qu’un commit est poussé sur la branche `main` (via merge d’une PR appr
 
 Ainsi, la version `latest` est toujours à jour avec l’état actuel de la branche `main`.
 
-### 5.1 Exécuter l’image Docker
+### 4.1 Exécuter l’image Docker
 
 Pour exécuter l’application depuis l’image Docker la plus récente (tag `latest`) :
 
@@ -84,7 +84,7 @@ docker run -it --rm sairkko/guess-the-word:latest
 ```
 Le jeu se lancera alors dans votre terminal.
 
-## 6. Livraison Continue (avec les tags)
+## 5. Livraison Continue (avec les tags)
 
 Lorsqu’on crée **manuellement un tag** (par exemple `v2.0.3`) et qu’on le pousse sur GitHub, le pipeline de **Livraison Continue** se déclenche :
 
@@ -93,7 +93,7 @@ Lorsqu’on crée **manuellement un tag** (par exemple `v2.0.3`) et qu’on le p
 3. Publie cette image Docker avec la balise `v2.0.3` sur Docker Hub.  
 4. (Bonus) Crée automatiquement une **release GitHub** (notes de release) associée au tag.
 
-### 6.1 Exemple de création de tag et de push
+### 5.1 Exemple de création de tag et de push
 
 ```bash
 # Création du tag
@@ -110,11 +110,11 @@ Après quelques minutes, votre pipeline GitHub Actions va :
 - Pousser cette image sur Docker Hub.
 - Créer une release GitHub visible sur la page “Releases” du dépôt [Release GitHub](https://github.com/Sairkko/ci-cd-evalM2/releases/tag/v2.0.3).
 
-## 7. Procédure de déploiement pour Damien Duportal et Marion Playout ou autres stagiaires
+## 6. Procédure de déploiement pour Damien Duportal et Marion Playout ou autres stagiaires
 
 Lorsque vous souhaitez mettre en production une nouvelle version, voici les **deux scénarios** possibles :
 
-### 7.1 Scénario 1 : Déploiement continu sur `main` (version *latest*)
+### 6.1 Scénario 1 : Déploiement continu sur `main` (version *latest*)
 
 1. **S’assurer que la PR est prête** :  
    - Vérifiez que le CI passe et que la PR est approuvée.  
@@ -127,7 +127,7 @@ Lorsque vous souhaitez mettre en production une nouvelle version, voici les **de
 
 Aucune action manuelle supplémentaire n’est nécessaire. L’image `latest` est prête à être utilisée.
 
-### 7.2 Scénario 2 : Livraison continue via un tag
+### 6.2 Scénario 2 : Livraison continue via un tag
 
 1. **Décider d’une nouvelle version** (ex. `v2.0.4`).  
 2. **Créer et pousser le tag** depuis votre machine :  
@@ -139,7 +139,7 @@ Aucune action manuelle supplémentaire n’est nécessaire. L’image `latest` e
 La construction de l’image Docker avec le tag v2.0.4 sera lancée.
 La release GitHub “v2.0.4” sera créée.
 
-## 8. Dockerfile et Hadolint (bonus)
+## 7. Dockerfile et Hadolint (bonus)
 
 Nous avons fourni un [`Dockerfile`](./Dockerfile) simple qui :
 
