@@ -17,15 +17,6 @@ Bienvenue dans notre projet **Guess the Word** ! Ce document (README) décrit :
 - **Nom 1** Bastien OEUVRARD
 - **Nom 2** Jérémy ROSSI
 
----
-
-## 2. URL du dépôt
-
-Le projet est disponible sur GitHub :  
-[**GitHub - Guess The Word**](https://github.com/Sairkko/ci-cd-evalM2/tree/main)
-
----
-
 ## 3. Description du projet
 
 **Guess the Word** est un mini-jeu en Python. Son but est simple : l’utilisateur doit deviner le mot secret.  
