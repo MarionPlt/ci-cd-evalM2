@@ -1,3 +1,4 @@
+Let's test it
 # Projet : Guess the Word
 
 Bienvenue dans notre projet **Guess the Word** ! Ce document (README) décrit :
