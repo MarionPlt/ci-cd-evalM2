@@ -1,5 +1,5 @@
 def guess_the_word(user_guess, secret_word="angular"):
-    return user_guess.strip().lower() == secret_word.lower()
+    return user_guess.strip().lower() != secret_word.lower()
 
 
 # test linter
